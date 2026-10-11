@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ristorante Bella Vista </title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+
+    <header>
+        <nav>
+            <div class="logo">Bella Vista</div>
+            <ul>
+    <li><a href="#home">Home</a></li>
+    <li><a href="#menu">Menu</a></li>
+    <li><a href="#chi-siamo">Chi siamo</a></li>
+    <li><a href="#orari">Orari</a></li>
+    <li><a href="#contatti">Contatti</a></li>
+    <li><a href="#prenota">Prenota</a></li>
+</ul>
+        </nav>
+    </header>
+
+    <section id="home" class="hero">
+        <h1>Gusto e Tradizione</h1>
+        <p>Cucina autentica nel cuore della città</p>
+        <a href="#prenota" class="btn">Prenota un tavolo </a>
+    </section>
+    
+<section id="menu">
+    <h2>Il Nostro Menu</h2>
+
+    <div class="filtri">
+    <button class="btn-filtro active" onclick="filtraMenu('tutti')">Tutti</button>
+    <button class="btn-filtro " onclick="filtraMenu('Primi')">Primi</button>
+    <button class="btn-filtro " onclick="filtraMenu('Secondi')">Secondi</button>
+    
+</div>
+
+
+<div class="piatti container" id="piatti-list">
+
+</div>
+</section>
+
+<section id="chi-siamo">
+
+    <div class="chi-siamo-testo">
+
+        <h2>La nostra storia</h2>
+
+      <p>
+    Al Ristorante Bella Vista portiamo in tavola i sapori
+    della tradizione italiana, con piatti preparati ogni giorno
+    con passione e attenzione alla qualità.
+</p>
+
+<p>
+    La nostra cucina nasce dal desiderio di riscoprire le ricette
+    della tradizione e reinterpretarle con un tocco moderno,
+    mantenendo sempre il gusto e la semplicità degli ingredienti.
+</p>
+
+<p>
+    Selezioniamo con cura prodotti freschi e di stagione,
+    scegliendo ingredienti di qualità per offrire ai nostri clienti
+    un'esperienza autentica e piacevole.
+</p>
+
+<p>
+    Che sia una cena romantica, un pranzo in famiglia o una serata
+    con gli amici, da Bella Vista vogliamo farvi sentire come a casa.
+</p>
+
+<a href="#menu" class="btn">
+    Scopri il nostro menu
+</a>
+
+</section>ù
+
+<section id="orari">
+
+    <h2>I nostri orari</h2>
+
+    <div class="orari-container">
+
+        <p><strong>Lunedì:</strong> Chiuso</p>
+
+        <p><strong>Martedì:</strong> 12:00 - 15:00 | 19:00 - 23:00</p>
+
+        <p><strong>Mercoledì:</strong> 12:00 - 15:00 | 19:00 - 23:00</p>
+
+        <p><strong>Giovedì:</strong> 12:00 - 15:00 | 19:00 - 23:00</p>
+
+        <p><strong>Venerdì:</strong> 12:00 - 15:00 | 19:00 - 23:30</p>
+
+        <p><strong>Sabato:</strong> 12:00 - 15:00 | 19:00 - 23:30</p>
+
+        <p><strong>Domenica:</strong> 12:00 - 15:00</p>
+
+    </div>
+
+</section>
+<section id="prenota">
+
+    <h2>Prenota il tuo tavolo</h2>
+
+    <p>Vieni a trovarci e vivi l'esperienza Bella Vista.</p>
+
+    <form id="form-prenotazione">
+
+        <label for="nome">Nome</label>
+        <input type="text" id="nome" placeholder="Il tuo nome">
+
+        <label for="persone">Numero di persone</label>
+        <input type="number" id="persone" min="1" max="20">
+
+        <label for="data">Data</label>
+        <input type="date" id="data">
+
+        <button type="submit" class="btn-prenota">
+            Prenota
+        </button>
+
+    </form>
+<div id="riepilogo-prenotazione"></div>
+</section>
+</section>
+<section id="galleria">
+
+    <h2>La nostra galleria</h2>
+
+    <div class="galleria-container">
+
+        <img src="images/galleria1.jpg" alt="Sala del Ristorante Bella Vista">
+
+        <img src="images/galleria2.jpg" alt="Piatti del Ristorante Bella Vista">
+
+        <img src="images/galleria3.jpg" alt="Tavolo del Ristorante Bella Vista">
+
+        <img src="images/galleria4.jpg" alt="Piatto della cucina Bella Vista">
+
+        <img src="images/galleria5.jpg" alt="Interno del ristorante">
+
+        <img src="images/galleria6.jpg" alt="Cena al Ristorante Bella Vista">
+
+    </div>
+
+</section>
+<section id="contatti">
+
+    <h2>Contatti</h2>
+
+    <div class="contatti-container">
+
+        <div class="contatto">
+            <h3>📍 Indirizzo</h3>
+            <p>Via Roma 25, Torino</p>
+        </div>
+
+        <div class="contatto">
+            <h3>📞 Telefono</h3>
+            <p>0123 456789</p>
+        </div>
+
+        <div class="contatto">
+            <h3>✉️ Email</h3>
+            <p>info@bellavista.it</p>
+        </div>
+
+    </div>
+
+</section>
+<footer>
+
+    <h3>Bella Vista</h3>
+
+    <p>Via Roma 25, Torino</p>
+
+    <p>Tel: 0123 456789</p>
+
+    <p>&copy; 2026 Ristorante Bella Vista</p>
+
+</footer>
+
+<script src="script.js"></script>
+
+</body>
+</html>
+
+<script src="script.js"></script>
+</body>
+</html>
+

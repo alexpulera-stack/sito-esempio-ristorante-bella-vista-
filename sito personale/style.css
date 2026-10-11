@@ -1,0 +1,490 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing:border-box;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    
+}
+html {scroll-behavior: smooth;
+}
+
+
+body {
+
+}
+
+header {
+    padding: 20px 50px;
+    background-color: brown;
+}
+
+
+nav {
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+}
+
+a {
+    color: bisque;
+text-decoration: none;
+}
+
+
+
+ul {
+    display: flex;
+    list-style: none;
+    gap: 30px;
+   
+}
+
+.logo {
+    font-size:25px;
+    color: bisque;
+    font-weight:bold;
+}
+
+a:hover  {
+    color:#d69366;
+}
+
+.hero {
+    height: 500px;
+     align-items: center;
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     background-image:  linear-gradient(rgba(0, 0, 0, 0.5)), url(images/pacchetto-mangiare4.jpg);
+     background-size: cover;
+     background-position:center;
+     color: bisque;
+
+}
+
+.hero h1 {
+    font-size:50px;
+    font-weight:bolder;
+    margin-bottom:25px;
+}
+
+.hero p {
+   font-size:20px;
+margin-bottom:20px;
+letter-spacing:3px;
+}
+
+.btn {
+    background-color:brown;
+    color:bisque;
+    padding: 12px 25px;
+    text-decoration:none;
+   border-radius : 50px;
+}
+
+.btn:hover {
+    background-color:#c56a2d;
+    color:white;
+}
+
+#menu {
+    padding:30px;
+text-align:center;
+}
+
+#menu h2 {
+    font-size:30px;
+margin-bottom:20px;
+}
+   
+.filtri {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+.btn-filtro {
+    background-color: white;
+    color: brown;
+    border: 2px solid brown;
+    padding: 10px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+}
+
+.btn-filtro:hover {
+    background-color:brown;
+    color: bisque;
+}
+
+.piatti {
+    display: grid;
+  grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.card {
+       background-color: white;
+       border-radius: 25px;
+       padding: 10px;
+       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+       transition: 0.3s;
+       overflow: hidden;
+} 
+.card:hover {
+    transform: translateY(-5px);
+     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.card img {
+    width:100%;
+    height: 200px;
+    object-fit: cover;
+     transition: 0.3s;
+}
+
+.card img:hover {
+transform: scale(1.05);
+}
+
+.card h3 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size:  20px;
+}
+
+.card p {
+    font-size: 14px;
+    color: gray;
+    margin-bottom: 10px;
+}
+
+.prezzo {
+font-weight:bold;
+color: brown;
+font-size:large;
+}
+
+.btn-prenota {
+    background-color:brown;
+color:white;
+border:0;
+padding: 10px;
+border-radius: 20px;
+cursor:pointer;
+}
+
+.btn-prenota:hover {
+background-color: #c56a2d;
+transform: scale(1.05);
+}
+
+#prenota {
+    padding: 50px 20px;
+    text-align: center;
+    background-color: #f5f1eb;
+}
+
+#prenota h2 {
+    font-size: 30px;
+    margin-bottom: 15px;
+}
+
+#prenota p {
+    color: gray;
+    margin-bottom: 30px;
+}
+
+
+#prenota form {
+    max-width: 500px;
+    margin: 30px auto 0;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    text-align: left;
+
+    background-color: white;
+    border-radius: 18px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.12);
+}
+#prenota label {
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+#prenota input {
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    font-size: 16px;
+    outline: none;
+    transition: 0.3s;
+}
+#prenota .btn-prenota {
+    margin-top: 20px;
+    padding: 12px;
+}
+
+footer {
+    background-color:brown;
+    color: bisque;
+    text-align: center;
+    padding: 30px 20px;
+}
+
+footer h3 {
+    font-size: 25px;
+    margin-bottom: 15px;
+}
+
+footer p {
+    margin: 8px 0;
+}
+
+@media (max-width: 768px) {
+
+    .galleria-container {
+    grid-template-columns: 1fr;
+}
+    .contatti-container {
+    flex-direction: column;
+}
+
+.contatto {
+    width: 100%;
+}
+    header {
+        padding: 15px 20px;
+    }
+
+    nav {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    ul {
+        gap: 15px;
+    }
+
+    .hero {
+        height: 400px;
+        padding: 20px;
+        text-align: center;
+    }
+
+    .hero h1 {
+        font-size: 35px;
+    }
+
+    .hero p {
+        font-size: 16px;
+    }
+
+    .piatti {
+        grid-template-columns: 1fr;
+    }
+
+    #menu {
+        padding: 30px 15px;
+    }
+
+    .filtri {
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+}
+#riepilogo-prenotazione {
+    max-width: 500px;
+    margin: 30px auto 0;
+    padding: 0;
+    text-align: center;
+}
+
+#riepilogo-prenotazione:not(:empty) {
+    padding: 20px;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+#riepilogo-prenotazione h3 {
+    color: brown;
+    margin-bottom: 15px;
+}
+
+#riepilogo-prenotazione p {
+    margin: 8px 0;
+    color: #555;
+}
+#chi-siamo {
+    min-height: 600px;
+    padding: 80px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    background-image: linear-gradient(
+        rgba(0, 0, 0, 0.55),
+        rgba(0, 0, 0, 0.55)
+    ), url("images/ristorante.jpg");
+
+    background-size: cover;
+    background-position: center;
+}
+
+.chi-siamo-testo{
+    max-width: 800px;
+    color: white;
+}
+
+.chi-siamo-testo h2 {
+    font-size: 40px;
+    margin-bottom: 25px;
+}
+
+.chi-siamo-testo p {
+    line-height: 1.7;
+    margin-bottom: 15px;
+    font-size: 16px;
+}
+.chi-siamo-testo p:last-of-type {
+    margin-bottom: 35px;
+}
+.chi-siamo-testo.btn {
+    display: inline-block;
+    margin-top: 25px;
+}
+
+.chi-siamo-immagine {
+    flex: 1;
+}
+
+.chi-siamo-immagine img {
+    width: 100%;
+    border-radius: 20px;
+    display: block;
+}
+
+#orari {
+    padding: 50px 20px;
+    text-align: center;
+    background-color: white;
+}
+
+#orari h2 {
+    font-size: 30px;
+    color: brown;
+    margin-bottom: 25px;
+}
+
+.orari-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 25px;
+    background-color: #f5f1eb;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.orari-container p {
+    padding: 10px;
+    margin: 0;
+    border-bottom: 1px solid #ddd;
+    color: #555;
+}
+
+.orari-container p:last-child {
+    border-bottom: none;
+}
+
+.orari-container strong {
+    color: brown;
+}
+
+#contatti {
+    padding: 50px 20px;
+    text-align: center;
+    background-color: #f5f1eb;
+}
+
+#contatti h2 {
+    font-size: 30px;
+    color: brown;
+    margin-bottom: 30px;
+}
+
+.contatti-container {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.contatto {
+    flex: 1;
+    background-color: white;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.contatto h3 {
+    color: brown;
+    margin-bottom: 10px;
+}
+
+.contatto p {
+    color: #555;
+}
+
+@keyframes comparsa {
+    from {
+        transform: translateY(20px);
+    }
+
+    to {
+        transform: translateY(0);
+    }
+}
+
+.hero h1 {
+    animation: comparsa 0.8s ease-out;
+}
+
+.hero p {
+    animation: comparsa 1s ease-out;
+}
+
+.hero .btn {
+    animation: comparsa 1.2s ease-out;
+}
+#galleria {
+    padding: 40px 20px;
+    text-align: center;
+}
+
+#galleria h2 {
+    font-size: 30px;
+    margin-bottom: 30px;
+    color: brown;
+}
+
+.galleria-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.galleria-container img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 15px;
+    display: block;
+}
