@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ristorante - Torino</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
+        html { scroll-behavior: smooth; }
+        body { background-color: #0b132b; color: #ffffff; line-height: 1.6; overflow-x: hidden; }
+        a { color: inherit; text-decoration: none; }
+        
+        /* NAVBAR */
+        .navbar { background: rgba(8, 13, 30, 0.95); backdrop-filter: blur(10px); padding: 18px 40px; display: flex; justify-content: space-between; align-items: center; position: fixed; width: 100%; top: 0; z-index: 1000; border-bottom: 1px solid #1e293b; transition: all 0.3s ease; }
+        .logo { font-size: 22px; font-weight: 900; color: #fbbf24; letter-spacing: 1px; text-transform: uppercase; }
+        .nav-links { display: flex; gap: 25px; font-size: 14px; font-weight: 600; color: #cbd5e1; align-items: center; }
+        .nav-links a { transition: color 0.3s ease; }
+        .nav-links a:hover { color: #fbbf24; }
+        .btn-gold { background: #fbbf24; color: #0f172a; padding: 12px 24px; font-weight: 800; border-radius: 8px; font-size: 14px; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); display: inline-block; border: none; cursor: pointer; text-align: center; box-shadow: 0 4px 14px rgba(251, 191, 36, 0.2); }
+        .btn-gold:hover { background: #f59e0b; transform: translateY(-3px); box-shadow: 0 8px 20px rgba(251, 191, 36, 0.4); }
+        .btn-gold:active { transform: translateY(-1px); }
+        
+        /* HERO */
+        .hero { padding: 160px 20px 100px 20px; text-align: center; background: linear-gradient(180deg, #080d1e 0%, #0b132b 100%); position: relative; }
+        .badge { border: 1px solid #fbbf24; color: #fbbf24; padding: 6px 16px; border-radius: 20px; font-size: 11px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; display: inline-block; margin-bottom: 20px; background: rgba(251, 191, 36, 0.05); }
+        .hero h1 { font-size: 48px; font-weight: 900; max-width: 900px; margin: 0 auto 20px auto; line-height: 1.2; }
+        .hero h1 span { color: #fbbf24; }
+        .hero p { font-size: 18px; color: #94a3b8; max-width: 650px; margin: 0 auto 35px auto; }
+        
+        /* SECTIONS */
+        .section { padding: 80px 40px; max-width: 1200px; margin: 0 auto; }
+        .bg-dark { background: #080d1e; }
+        .section-title { text-align: center; font-size: 36px; font-weight: 800; margin-bottom: 15px; }
+        .section-subtitle { text-align: center; color: #94a3b8; font-size: 14px; margin-bottom: 50px; }
+        
+        /* GRID */
+        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+        .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 20px; }
+        @media(max-width: 768px) { .grid-2 { grid-template-columns: 1fr; } .navbar { padding: 15px 20px; } }
+        
+        /* ANIMATED PRODUCT CARDS */
+        .card { background: #111c3a; border: 1px solid #1e293b; border-radius: 16px; overflow: hidden; position: relative; display: flex; flex-direction: column; justify-content: space-between; transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); cursor: pointer; }
+        .card-img-wrapper { width: 100%; height: 220px; overflow: hidden; position: relative; background-color: #17254c; }
+        .card-img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1); }
+        
+        /* HOVER EFFECTS ON CARDS */
+        .card:hover { transform: translateY(-10px); border-color: rgba(251, 191, 36, 0.5); box-shadow: 0 20px 35px rgba(0, 0, 0, 0.6), 0 0 25px rgba(251, 191, 36, 0.15); }
+        .card:hover .card-img { transform: scale(1.08); }
+        .card::after { content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%; background: linear-gradient(to right, transparent, rgba(255,255,255,0.08), transparent); transform: skewX(-25deg); transition: 0.75s; pointer-events: none; }
+        .card:hover::after { left: 150%; }
+
+        .card-body { padding: 25px; flex: 1; display: flex; flex-direction: column; justify-content: space-between; }
+        .card-tag { position: absolute; top: 15px; right: 15px; background: #fbbf24; color: #0f172a; font-weight: 800; font-size: 10px; padding: 5px 12px; border-radius: 12px; text-transform: uppercase; z-index: 10; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
+        .card h3 { font-size: 20px; font-weight: 700; margin-bottom: 8px; color: #ffffff; transition: color 0.3s; }
+        .card:hover h3 { color: #fbbf24; }
+        .card-price { font-size: 22px; font-weight: 900; color: #fbbf24; margin-bottom: 12px; }
+        .card p { font-size: 13px; color: #94a3b8; margin-bottom: 20px; line-height: 1.5; }
+        .card-btn { background: #17254c; color: #e2e8f0; text-align: center; padding: 12px; border-radius: 8px; font-weight: 700; font-size: 13px; transition: all 0.3s; display: block; border: 1px solid transparent; }
+        .card:hover .card-btn { background: #fbbf24; color: #0f172a; border-color: #fbbf24; box-shadow: 0 4px 12px rgba(251, 191, 36, 0.3); }
+
+        /* ANIMATED GALLERY */
+        .gallery-item { overflow: hidden; border-radius: 12px; border: 1px solid #1e293b; position: relative; height: 210px; cursor: pointer; }
+        .gallery-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease, filter 0.5s ease; filter: brightness(0.9); }
+        .gallery-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(180deg, transparent 40%, rgba(11, 19, 43, 0.85) 100%); opacity: 0; transition: opacity 0.4s ease; display: flex; align-items: flex-end; padding: 15px; font-size: 13px; font-weight: 700; color: #fbbf24; }
+        .gallery-item:hover .gallery-img { transform: scale(1.12); filter: brightness(1.1); }
+        .gallery-item:hover .gallery-overlay { opacity: 1; }
+
+        /* STORY IMAGE HOVER */
+        .img-rounded-wrapper { overflow: hidden; border-radius: 16px; border: 1px solid #1e293b; box-shadow: 0 15px 30px rgba(0,0,0,0.4); }
+        .img-rounded { width: 100%; height: 380px; object-fit: cover; display: block; transition: transform 0.6s ease; }
+        .img-rounded-wrapper:hover .img-rounded { transform: scale(1.05); }
+
+        /* FORM */
+        .form-box { background: #111c3a; border: 1px solid #1e293b; border-radius: 20px; padding: 40px; max-width: 600px; margin: 0 auto; box-shadow: 0 20px 40px rgba(0,0,0,0.5); }
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; font-size: 12px; font-weight: 700; text-transform: uppercase; margin-bottom: 8px; color: #cbd5e1; letter-spacing: 0.5px; }
+        .form-control { width: 100%; padding: 14px; background: #0b132b; border: 1px solid #334155; border-radius: 8px; color: #fff; font-size: 14px; outline: none; transition: border-color 0.3s; }
+        .form-control:focus { border-color: #fbbf24; box-shadow: 0 0 10px rgba(251, 191, 36, 0.2); }
+
+        /* MODAL POPUP */
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 2000; justify-content: center; align-items: center; backdrop-filter: blur(5px); }
+        .modal-content { background: #111c3a; border: 1px solid #fbbf24; padding: 40px; border-radius: 16px; max-width: 450px; text-align: center; position: relative; animation: modalIn 0.3s ease-out; }
+        @keyframes modalIn { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+        
+        /* FOOTER */
+        footer { background: #050814; padding: 60px 40px 30px 40px; border-top: 1px solid #1e293b; color: #64748b; font-size: 13px; }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; max-width: 1200px; margin: 0 auto 40px auto; }
+        .footer-col h4 { color: #fff; margin-bottom: 15px; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; }
+        .footer-col p { color: #cbd5e1; margin-bottom: 8px; }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <div class="navbar">
+        <div class="logo">Ristorante</div>
+        <div class="nav-links">
+            <a href="#">Home</a>
+            <a href="#storia">La Storia</a>
+            <a href="#specialita">Specialità</a>
+            <a href="#galleria">Galleria</a>
+            <a href="#prenota">Prenota</a>
+        </div>
+        <a href="#prenota" class="btn-gold">Prenota Ora</a>
+    </div>
+
+    <!-- HERO -->
+    <div class="hero">
+        <span class="badge">Ristorante / Pizzeria A TORINO</span>
+        <h1>Eccellenza e Gusto Autentico da <span>Ristorante</span></h1>
+        <p>Ristorante / Pizzeria situato nel cuore di Torino (Via Francesco Cigna 23). Ambiente accogliente e prodotti tradizionali di altissima qualità.</p>
+        <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
+            <a href="#prenota" class="btn-gold" style="font-size: 16px; padding: 16px 32px;">Prenota un Tavolo</a>
+            <a href="#specialita" class="btn-gold" style="background: #1e293b; color: #fff; font-size: 16px; padding: 16px 32px; box-shadow: none;">Scopri il Menu</a>
+        </div>
+    </div>
+
+    <!-- LA NOSTRA STORIA -->
+    <div id="storia" class="bg-dark" style="padding: 80px 20px;">
+        <div style="max-width: 1100px; margin: 0 auto;">
+            <div class="grid-2">
+                <div class="img-rounded-wrapper">
+                    <img src="https://picsum.photos/id/225/800/500" alt="La Nostra Storia" class="img-rounded">
+                </div>
+                <div>
+                    <span class="badge">TRADIZIONE & PASSIONE</span>
+                    <h2 class="section-title" style="text-align: left; margin-bottom: 20px;">La Nostra Storia</h2>
+                    <p style="font-size: 15px; color: #cbd5e1; margin-bottom: 20px; line-height: 1.8;">
+                        Incontraci in un angolo caldo e accogliente, dove la passione per la qualità e la preservazione della tradizione si fondono in ogni piatto servito.
+                    </p>
+                    <div style="color: #fbbf24; font-weight: 700; font-size: 15px; display: flex; align-items: center; gap: 8px;">
+                        <span>📍</span> Via Francesco Cigna 23, Torino
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SPECIALITA' -->
+    <div id="specialita" class="section">
+        <h2 class="section-title">Le Nostre Specialità</h2>
+        <p class="section-subtitle">Proposte selezionate ogni giorno con ingredienti freschi locali. Passa il mouse sulle schede per i dettagli.</p>
+
+        <div class="grid-3">
+            <!-- Card 1 -->
+            <div class="card" onclick="selezionaPiatto('Pizza Margherita Verace DOP')">
+                <span class="card-tag">Pizze Classiche</span>
+                <div class="card-img-wrapper">
+                    <img src="https://picsum.photos/id/1080/600/400" alt="Pizza Margherita Verace DOP" class="card-img">
+                </div>
+                <div class="card-body">
+                    <div>
+                        <h3>Pizza Margherita Verace DOP</h3>
+                        <div class="card-price">€ 10.50</div>
+                        <p>Pomodoro San Marzano DOP, Mozzarella di Bufala Campana e basilico fresco.</p>
+                    </div>
+                    <a href="#prenota" class="card-btn">Ordina / Prenota →</a>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="card" onclick="selezionaPiatto('Tagliata di Fassona Piemontese')">
+                <span class="card-tag">Secondi di Carne</span>
+                <div class="card-img-wrapper">
+                    <img src="https://picsum.photos/id/292/600/400" alt="Tagliata di Fassona Piemontese" class="card-img">
+                </div>
+                <div class="card-body">
+                    <div>
+                        <h3>Tagliata di Fassona Piemontese</h3>
+                        <div class="card-price">€ 22.00</div>
+                        <p>Controfiletto di Fassona con scaglie di Castelmagno e riduzione al Barolo.</p>
+                    </div>
+                    <a href="#prenota" class="card-btn">Ordina / Prenota →</a>
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="card" onclick="selezionaPiatto('Agnolotti del Plin al Sugo')">
+                <span class="card-tag">Primi Tradizionali</span>
+                <div class="card-img-wrapper">
+                    <img src="https://picsum.photos/id/488/600/400" alt="Agnolotti del Plin al Sugo" class="card-img">
+                </div>
+                <div class="card-body">
+                    <div>
+                        <h3>Agnolotti del Plin al Sugo</h3>
+                        <div class="card-price">€ 15.00</div>
+                        <p>Pasta fresca ripiena fatta a mano secondo l'antica ricetta tradizionale.</p>
+                    </div>
+                    <a href="#prenota" class="card-btn">Ordina / Prenota →</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- GALLERIA LOCALE CON ANIMAZIONI HOVER -->
+    <div id="galleria" class="bg-dark" style="padding: 80px 20px;">
+        <div style="max-width: 1200px; margin: 0 auto;">
+            <h2 class="section-title">Galleria del Locale</h2>
+            <p class="section-subtitle">Un'esperienza per la vista e per il palato. Esplora il nostro ambiente.</p>
+            <div class="grid-4">
+                <div class="gallery-item">
+                    <img src="https://picsum.photos/id/431/600/450" alt="Ambiente" class="gallery-img">
+                    <div class="gallery-overlay">✨ Sala Principale</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://picsum.photos/id/225/600/450" alt="Dettaglio Cucina" class="gallery-img">
+                    <div class="gallery-overlay">🍷 Selezione Vini & Beverage</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://picsum.photos/id/1060/600/450" alt="Preparazione" class="gallery-img">
+                    <div class="gallery-overlay">👨‍🍳 Artigianalità e Freschezza</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://picsum.photos/id/1080/600/450" alt="Tavolo Riservato" class="gallery-img">
+                    <div class="gallery-overlay">🕯️ Atmosfera Accogliente</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PRENOTAZIONE INTERATTIVA -->
+    <div id="prenota" style="padding: 80px 20px;">
+        <div class="form-box">
+            <div style="text-align: center; margin-bottom: 30px;">
+                <span class="badge">PRENOTAZIONE ONLINE</span>
+                <h2 style="font-size: 28px; margin-top: 10px;">Prenota il Tuo Tavolo</h2>
+            </div>
+            <form id="bookingForm" onsubmit="inviaPrenotazione(event)">
+                <div class="form-group">
+                    <label>Nome Completo *</label>
+                    <input type="text" id="nomeCliente" class="form-control" required placeholder="Es. Mario Rossi">
+                </div>
+                <div class="form-group">
+                    <label>Telefono / WhatsApp *</label>
+                    <input type="tel" id="telCliente" class="form-control" required placeholder="Es. +39 333 1234567">
+                </div>
+                <div class="form-group">
+                    <label>Data e Orario *</label>
+                    <input type="datetime-local" id="dataOra" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label>Numero Ospiti *</label>
+                    <select id="numOspiti" class="form-control">
+                        <option value="2 Persone">2 Persone</option>
+                        <option value="3 Persone">3 Persone</option>
+                        <option value="4 Persone">4 Persone</option>
+                        <option value="5+ Persone">5+ Persone (Gruppo)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Note / Piatto Preferito</label>
+                    <input type="text" id="notePiatto" class="form-control" placeholder="Es. Piatto desiderato o allergie...">
+                </div>
+                <button type="submit" class="btn-gold" style="width: 100%; padding: 16px; margin-top: 10px;">Conferma Prenotazione Tavolo</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL DI CONFERMA -->
+    <div id="modalConferma" class="modal">
+        <div class="modal-content">
+            <div style="font-size: 48px; margin-bottom: 15px;">🎉</div>
+            <h3 style="color: #fbbf24; font-size: 22px; margin-bottom: 10px;">Prenotazione Ricevuta!</h3>
+            <p id="modalTesto" style="color: #cbd5e1; font-size: 14px; margin-bottom: 25px; line-height: 1.6;"></p>
+            <button onclick="chiudiModal()" class="btn-gold" style="width: 100%;">Perfetto, Chiudi</button>
+        </div>
+    </div>
+
+    <!-- RECENSIONI GOOGLE -->
+    <div id="recensioni" class="bg-dark" style="padding: 80px 20px;">
+        <div class="section" style="padding: 0;">
+            <h2 class="section-title">Dicono di Noi su Google</h2>
+            <p class="section-subtitle">Valutazione media 4.9/5 stelle basata sulle recensioni verificate dei clienti.</p>
+
+            <div class="grid-3">
+                <div class="card" style="padding: 25px; cursor: default;">
+                    <div style="font-weight: 700; font-size: 16px; color: #fff;">Alessandro M.</div>
+                    <div style="color: #fbbf24; font-size: 16px; margin: 8px 0;">★★★★★</div>
+                    <p style="font-size: 13px; color: #cbd5e1; font-style: italic;">"Esperienza eccezionale a Torino! Prodotti freschissimi, personale gentilissimo e un'atmosfera unica nel suo genere."</p>
+                    <span style="color: #10b981; font-size: 11px; font-weight: 700;">✓ Recensione Google Verificata</span>
+                </div>
+
+                <div class="card" style="padding: 25px; cursor: default;">
+                    <div style="font-weight: 700; font-size: 16px; color: #fff;">Chiara P.</div>
+                    <div style="color: #fbbf24; font-size: 16px; margin: 8px 0;">★★★★★</div>
+                    <p style="font-size: 13px; color: #cbd5e1; font-style: italic;">"Posto accogliente a Torino, qualità eccellente e servizio impeccabile. Ci torneremo sicuramente!"</p>
+                    <span style="color: #10b981; font-size: 11px; font-weight: 700;">✓ Recensione Google Verificata</span>
+                </div>
+
+                <div class="card" style="padding: 25px; cursor: default;">
+                    <div style="font-weight: 700; font-size: 16px; color: #fff;">Roberto D.</div>
+                    <div style="color: #fbbf24; font-size: 16px; margin: 8px 0;">★★★★★</div>
+                    <p style="font-size: 13px; color: #cbd5e1; font-style: italic;">"Rapporto qualità-prezzo ottimo nel centro di Torino. Consiglio di prenotare online per trovare posto subito."</p>
+                    <span style="color: #10b981; font-size: 11px; font-weight: 700;">✓ Recensione Google Verificata</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4 style="color: #fbbf24;">Ristorante</h4>
+                <p>Qualità e tradizione nel cuore di Torino.</p>
+                <p>📍 Via Francesco Cigna 23, Torino</p>
+            </div>
+            <div class="footer-col">
+                <h4>Orari di Apertura</h4>
+                <p>🕒 08:00 - 23:00</p>
+            </div>
+            <div class="footer-col">
+                <h4>Contatti & Info</h4>
+                <p>📞 +39 011 5555555</p>
+            </div>
+        </div>
+        <div style="text-align: center; border-top: 1px solid #1e293b; padding-top: 20px;">
+            &copy; 2026 Ristorante. Tutti i diritti riservati.
+        </div>
+    </footer>
+
+    <!-- LOGICA JS INTERATTIVA -->
+    <script>
+        // Imposta la data minima del form a oggi
+        const now = new Date();
+        now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
+        document.getElementById('dataOra').min = now.toISOString().slice(0,16);
+
+        function selezionaPiatto(nomePiatto) {
+            document.getElementById('notePiatto').value = "Piatto scelto: " + nomePiatto;
+            document.getElementById('prenota').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function inviaPrenotazione(e) {
+            e.preventDefault();
+            const nome = document.getElementById('nomeCliente').value;
+            const dataOra = document.getElementById('dataOra').value;
+            const persone = document.getElementById('numOspiti').value;
+
+            const dataFormattata = new Date(dataOra).toLocaleString('it-IT', {
+                day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit'
+            });
+
+            const modalTesto = `Grazie <strong>${nome}</strong>!<br><br>La tua prenotazione per <strong>${persone}</strong> il giorno <strong>${dataFormattata}</strong> è stata registrata con successo.<br><br>Ti invieremo una conferma via SMS/WhatsApp a breve.`;
+
+            document.getElementById('modalTesto').innerHTML = modalTesto;
+            document.getElementById('modalConferma').style.display = 'flex';
+        }
+
+        function chiudiModal() {
+            document.getElementById('modalConferma').style.display = 'none';
+            document.getElementById('bookingForm').reset();
+        }
+    </script>
+</body>
+</html>
